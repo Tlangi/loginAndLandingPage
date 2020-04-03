@@ -14,7 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
 import { LoginComponent } from './authentication/login/login.component';
 import {fakeBackendProvider} from './authentication/services/fake-backend-interceptor';
-import {FlexModule} from "@angular/flex-layout";
+import {FlexModule} from '@angular/flex-layout';
 
 @NgModule({
   imports: [
