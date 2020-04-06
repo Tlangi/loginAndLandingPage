@@ -3,6 +3,7 @@ import { ROUTES } from '../sidebar/sidebar.component';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import {AuthenticationService} from '../../authentication/services/authentication.service';
 
 @Component({
   selector: 'app-navbar',
@@ -17,6 +18,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private toggleButton: any;
   private sidebarVisible: boolean;
 
+  currentUser: any;
+
   public isCollapsed = true;
 
   closeResult: string;
@@ -25,11 +28,20 @@ export class NavbarComponent implements OnInit, OnDestroy {
     location: Location,
     private element: ElementRef,
     private router: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private authenticationService: AuthenticationService
   ) {
     this.location = location;
     this.sidebarVisible = false;
+    this.authenticationService.currentUser.subscribe(
+      x => this.currentUser = x);
   }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+  }
+
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)
    updateColor = () => {
    const navbar = document.getElementsByClassName('navbar')[0];

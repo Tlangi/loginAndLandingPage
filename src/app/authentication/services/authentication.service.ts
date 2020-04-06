@@ -23,7 +23,7 @@ export class AuthenticationService {
   }
 
   login(username, password) {
-    return this.httpClient.post<any>(`${environment.apiUrl}/users/authenticate`, ' username, password')
+    return this.httpClient.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
       .pipe(map(user => {
         // store user details and jwt toke on session storage and keep user logged in between page refreshes
         sessionStorage.setItem('currentUser', JSON.stringify(user));

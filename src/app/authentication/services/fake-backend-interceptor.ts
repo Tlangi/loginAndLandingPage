@@ -15,12 +15,13 @@ const users = [{ id: 1, firstName: 'Tlangelani', lastName: 'Maswanganye', userna
 export class FakeBackendInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const {url, method, headers, body} = request;
+    const { url, method, headers, body } = request;
 
-    // wrap in delayed observable to stimulate server api call
+    // wrap in delayed observable to simulate server api call
     return of(null)
       .pipe(mergeMap(handleRoute))
-      .pipe(materialize())
+      .pipe(materialize()) // call materialize and dematerialize to ensure delay even if an error is
+      // thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)
       .pipe(delay(500))
       .pipe(dematerialize());
 
@@ -34,8 +35,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
       }
     }
 
+    // route functions
+
     function authenticate() {
-      const {username, password} = body;
+      const { username, password } = body;
       const user = users.find(x => x.username === username && x.password === password);
       if (!user) return error('Username or password is incorrect');
       return ok({
@@ -50,12 +53,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     // helper functions
     // tslint:disable-next-line:no-shadowed-variable
     function ok(body?) {
-      return of(new HttpResponse({status: 200, body}));
+      return of(new HttpResponse({ status: 200, body }))
     }
 
     function error(message) {
-      return throwError({error: {message}});
-    };
+      return throwError({ error: { message } });
+    }
   }
 }
 

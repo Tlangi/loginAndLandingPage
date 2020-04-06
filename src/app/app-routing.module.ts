@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import {LoginComponent} from './authentication/login/login.component';
-import {AuthenticationGuardService} from "./authentication/services/authentication-guard.service";
+import {AuthenticationGuardService} from './authentication/services/authentication-guard.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent
