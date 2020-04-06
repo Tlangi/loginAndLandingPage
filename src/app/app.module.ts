@@ -17,6 +17,7 @@ import {fakeBackendProvider} from './authentication/services/fake-backend-interc
 import {FlexModule} from '@angular/flex-layout';
 import {ErrorInterceptorService} from './authentication/services/error-interceptor.service';
 import {JwtInterceptorService} from './authentication/services/jwt-interceptor.service';
+import { PageNotFoundComponent } from './errorHandler/page-not-found/page-not-found.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,7 @@ import {JwtInterceptorService} from './authentication/services/jwt-interceptor.s
     ToastrModule.forRoot(),
     FlexModule,
   ],
-  declarations: [AppComponent, AdminLayoutComponent, LoginComponent],
+  declarations: [AppComponent, AdminLayoutComponent, LoginComponent, PageNotFoundComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true },
