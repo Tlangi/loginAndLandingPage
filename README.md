@@ -1,1 +1,1 @@
-<p>Login and Landing page project: Username: test, password: test </p>
+Login and Landing page project: Username: test, password: test
