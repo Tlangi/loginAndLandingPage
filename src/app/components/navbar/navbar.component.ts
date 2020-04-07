@@ -11,6 +11,19 @@ import {AuthenticationService} from '../../authentication/services/authenticatio
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit, OnDestroy {
+
+  constructor(
+    location: Location,
+    private element: ElementRef,
+    private router: Router,
+    private modalService: NgbModal,
+    private authenticationService: AuthenticationService
+  ) {
+    this.location = location;
+    this.sidebarVisible = false;
+    this.authenticationService.currentUser.subscribe(
+      x => this.currentUser = x);
+  }
   private listTitles: any[];
   location: Location;
   // tslint:disable-next-line:variable-name
@@ -24,17 +37,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   closeResult: string;
 
-  constructor(
-    location: Location,
-    private element: ElementRef,
-    private router: Router,
-    private modalService: NgbModal,
-    private authenticationService: AuthenticationService
-  ) {
-    this.location = location;
-    this.sidebarVisible = false;
-    this.authenticationService.currentUser.subscribe(
-      x => this.currentUser = x);
+  private static getDismissReason (reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
   logout() {
@@ -194,18 +204,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.modalService.open(content, {windowClass: 'modal-search'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      this.closeResult = `Dismissed ${NavbarComponent.getDismissReason(reason)}`;
     });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
-    }
   }
   ngOnDestroy(){
      window.removeEventListener('resize', this.updateColor);

@@ -14,7 +14,7 @@ export class AuthenticationService {
   public currentUser: Observable<User>;
 
   constructor(private httpClient: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(sessionStorage.getItem('currentUser')));
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
@@ -25,16 +25,16 @@ export class AuthenticationService {
   login(username, password) {
     return this.httpClient.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
       .pipe(map(user => {
-        // store user details and jwt toke on session storage and keep user logged in between page refreshes
-        sessionStorage.setItem('currentUser', JSON.stringify(user));
+        // store user details and jwt toke on local storage and keep user logged in between page refreshes
+        localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
         return user;
       }))
   }
 
   logout() {
-    // remove user from session storage and set current user value null
-    sessionStorage.removeItem('currentUser');
+    // remove user from local storage and set current user value null
+    localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
   }
 }

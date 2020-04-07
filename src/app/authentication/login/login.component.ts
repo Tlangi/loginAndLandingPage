@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
-import { first } from 'rxjs/operators';
+import {first, switchMap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm: FormGroup = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -17,23 +18,24 @@ export class LoginComponent implements OnInit {
   });
 
   loading = false;
-  returnUrl: string;
+  return: string;
   error: string;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
   ) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/#']);
     }
   }
 
   ngOnInit() {
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+    this.route.queryParams.subscribe( params =>
+    this.return = params.return || '/#');
   }
 
   // convenience getter for easy access to form fields
@@ -51,11 +53,14 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate([this.returnUrl]);
+          this.router.navigateByUrl(this.return);
         },
         error => {
           this.error = error;
           this.loading = false;
         });
+  }
+
+  ngOnDestroy(): void {
   }
 }

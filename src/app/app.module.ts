@@ -18,6 +18,7 @@ import {FlexModule} from '@angular/flex-layout';
 import {ErrorInterceptorService} from './authentication/services/error-interceptor.service';
 import {JwtInterceptorService} from './authentication/services/jwt-interceptor.service';
 import { PageNotFoundComponent } from './errorHandler/page-not-found/page-not-found.component';
+import {AuthenticationGuardService} from './authentication/services/authentication-guard.service';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { PageNotFoundComponent } from './errorHandler/page-not-found/page-not-fo
   ],
   declarations: [AppComponent, AdminLayoutComponent, LoginComponent, PageNotFoundComponent],
   providers: [
+    AuthenticationGuardService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true },
     fakeBackendProvider ],

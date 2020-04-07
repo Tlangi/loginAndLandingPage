@@ -21,7 +21,6 @@ import { AboutUsComponent } from '../../pages/about-us/about-us.component';
   declarations: [
     DashboardComponent,
     AboutUsComponent,
-    // RtlComponent
   ]
 })
 export class AdminLayoutModule {}
