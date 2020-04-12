@@ -9,6 +9,8 @@ import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AboutUsComponent } from '../../pages/about-us/about-us.component';
+import {ContactUsComponent} from '../../pages/contact-us/contact-us.component';
+import {PageNotFoundComponent} from '../../pages/page-not-found/page-not-found.component';
 
 @NgModule({
   imports: [
@@ -21,6 +23,8 @@ import { AboutUsComponent } from '../../pages/about-us/about-us.component';
   declarations: [
     DashboardComponent,
     AboutUsComponent,
+    ContactUsComponent,
+    PageNotFoundComponent
   ]
 })
 export class AdminLayoutModule {}
