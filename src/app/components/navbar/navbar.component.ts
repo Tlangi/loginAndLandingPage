@@ -12,18 +12,6 @@ import {AuthenticationService} from '../../authentication/services/authenticatio
 })
 export class NavbarComponent implements OnInit, OnDestroy {
 
-  constructor(
-    location: Location,
-    private element: ElementRef,
-    private router: Router,
-    private modalService: NgbModal,
-    private authenticationService: AuthenticationService
-  ) {
-    this.location = location;
-    this.sidebarVisible = false;
-    this.authenticationService.currentUser.subscribe(
-      x => this.currentUser = x);
-  }
   private listTitles: any[];
   location: Location;
   // tslint:disable-next-line:variable-name
@@ -45,6 +33,19 @@ export class NavbarComponent implements OnInit, OnDestroy {
     } else {
       return  `with: ${reason}`;
     }
+  }
+
+  constructor(
+    location: Location,
+    private element: ElementRef,
+    private router: Router,
+    private modalService: NgbModal,
+    private authenticationService: AuthenticationService
+  ) {
+    this.location = location;
+    this.sidebarVisible = false;
+    this.authenticationService.currentUser.subscribe(
+      x => this.currentUser = x);
   }
 
   logout() {

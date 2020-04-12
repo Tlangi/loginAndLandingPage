@@ -19,6 +19,7 @@ import {ErrorInterceptorService} from './authentication/services/error-intercept
 import {JwtInterceptorService} from './authentication/services/jwt-interceptor.service';
 import { PageNotFoundComponent } from './errorHandler/page-not-found/page-not-found.component';
 import {AuthenticationGuardService} from './authentication/services/authentication-guard.service';
+import { ContactUsComponent } from './moreInfomation/contact-us/contact-us.component';
 
 @NgModule({
   imports: [
@@ -33,7 +34,7 @@ import {AuthenticationGuardService} from './authentication/services/authenticati
     ToastrModule.forRoot(),
     FlexModule,
   ],
-  declarations: [AppComponent, AdminLayoutComponent, LoginComponent, PageNotFoundComponent],
+  declarations: [AppComponent, AdminLayoutComponent, LoginComponent, PageNotFoundComponent, ContactUsComponent],
   providers: [
     AuthenticationGuardService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },

@@ -7,6 +7,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import {LoginComponent} from './authentication/login/login.component';
 import {AuthenticationGuardService} from './authentication/services/authentication-guard.service';
 import {PageNotFoundComponent} from './errorHandler/page-not-found/page-not-found.component';
+import {ContactUsComponent} from "./moreInfomation/contact-us/contact-us.component";
 
 const routes: Routes = [
   {
@@ -14,9 +15,14 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: 'contactUs',
+    component: ContactUsComponent
+  },
+  {
     path: '',
     redirectTo: 'dashboard',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate: [AuthenticationGuardService]
   },
   {
     path: '',
@@ -41,8 +47,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes, {
-    })
+    RouterModule.forRoot(routes)
   ],
   exports: [RouterModule]
 })
