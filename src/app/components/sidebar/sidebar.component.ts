@@ -14,6 +14,30 @@ export const ROUTES: RouteInfo[] = [
     class: ''
   },
   {
+    path: '/teams',
+    title: 'Teams',
+    icon: 'icon-chart-pie-36',
+    class: ''
+  },
+  {
+    path: '/architecture',
+    title: 'Architecture',
+    icon: 'icon-chart-pie-36',
+    class: ''
+  },
+  {
+    path: '/infrastructure',
+    title: 'Infrastructure',
+    icon: 'icon-chart-pie-36',
+    class: ''
+  },
+  {
+    path: '/admin',
+    title: 'Admin',
+    icon: 'icon-chart-pie-36',
+    class: ''
+  },
+  {
     path: '/aboutUs',
     title: 'About Us',
     icon: 'icon-chart-pie-36',

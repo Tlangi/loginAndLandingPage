@@ -17,6 +17,11 @@ import {fakeBackendProvider} from './authentication/services/fake-backend-interc
 import {FlexModule} from '@angular/flex-layout';
 import {ErrorInterceptorService} from './authentication/services/error-interceptor.service';
 import {JwtInterceptorService} from './authentication/services/jwt-interceptor.service';
+import { AdminComponent } from './pages/adminFolder/admin/admin.component';
+import { TeamsComponent } from './pages/teams/teams/teams.component';
+import { ProjectsComponent } from './pages/projects/projects/projects.component';
+import { ArchitectureComponent } from './pages/architecture/architecture/architecture.component';
+import { InfrastructureComponent } from './pages/infrastructure/infrastructure/infrastructure.component';
 
 @NgModule({
   imports: [

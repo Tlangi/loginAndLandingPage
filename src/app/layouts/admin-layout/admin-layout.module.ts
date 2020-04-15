@@ -12,6 +12,12 @@ import { AboutUsComponent } from '../../pages/about-us/about-us.component';
 import {PageNotFoundComponent} from '../../pages/page-not-found/page-not-found.component';
 import {ContactUsComponent} from '../../pages/contact-us/contact-us.component';
 import {HomeComponent} from '../../pages/home/home.component';
+import {AdminComponent} from '../../pages/adminFolder/admin/admin.component';
+import {LoginComponent} from '../../authentication/login/login.component';
+import {TeamsComponent} from '../../pages/teams/teams/teams.component';
+import {ProjectsComponent} from '../../pages/projects/projects/projects.component';
+import {ArchitectureComponent} from '../../pages/architecture/architecture/architecture.component';
+import {InfrastructureComponent} from '../../pages/infrastructure/infrastructure/infrastructure.component';
 
 @NgModule({
   imports: [
@@ -26,7 +32,12 @@ import {HomeComponent} from '../../pages/home/home.component';
     AboutUsComponent,
     HomeComponent,
     PageNotFoundComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    AdminComponent,
+    TeamsComponent,
+    ProjectsComponent,
+    ArchitectureComponent,
+    InfrastructureComponent
   ]
 })
 export class AdminLayoutModule {}
