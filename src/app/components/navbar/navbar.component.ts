@@ -11,7 +11,7 @@ import {AuthenticationService} from '../../authentication/services/authenticatio
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-  private listTitles: any[];
+  // private listTitles: any[];
   location: Location;
   // tslint:disable-next-line:variable-name
   mobile_menu_visible: any = 0;
@@ -65,7 +65,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     window.addEventListener('resize', this.updateColor);
-    this.listTitles = ROUTES.filter(listTitle => listTitle);
+    // this.listTitles = ROUTES.filter(listTitle => listTitle);
     const navbar: HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
     this.router.events.subscribe(event => {
@@ -184,7 +184,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
   }
 
-  getTitle() {
+  /* getTitle() {
     let titlee = this.location.prepareExternalUrl(this.location.path());
     if (titlee.charAt(0) === 'home') {
       titlee = titlee.slice(1);
@@ -196,7 +196,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
       }
     }
     return '';
-  }
+  }*/
 
   open(content) {
     this.modalService.open(content, {windowClass: 'modal-search'}).result.then((result) => {
