@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {AuthenticationService} from './authentication.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthenticationGuardService implements CanActivate{
   constructor(
     private router: Router,
@@ -14,10 +16,10 @@ export class AuthenticationGuardService implements CanActivate{
     if (currentUser) {
       // authorised so return true
       return true;
-    } else {
-      // not logged in so redirect to login page with the return url
-      this.router.navigate(['/login'], { queryParams: { return: state.url }});
-      return false;
     }
+
+    // not logged in so redirect to login page with the return url
+    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
+    return false;
   }
 }

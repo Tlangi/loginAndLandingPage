@@ -8,10 +8,6 @@ import {LoginComponent} from './authentication/login/login.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: AdminLayoutComponent
-  },
-  {
     path: 'login',
     component: LoginComponent
   },
@@ -24,15 +20,17 @@ const routes: Routes = [
         loadChildren:
           './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
       },
-    ]
-  },
+    ],
+  }
 ];
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {
+      // useHash: true
+    })
   ],
   exports: [RouterModule]
 })

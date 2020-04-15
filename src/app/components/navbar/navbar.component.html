@@ -4,11 +4,11 @@
       <div class=" navbar-toggle d-inline">
         <button class=" navbar-toggler" type="button" (click)="sidebarToggle()">
           <span class=" navbar-toggler-bar bar1"> </span>
-          <span class=" navbar-toggler-bar bar2"> </span>
-          <span class=" navbar-toggler-bar bar3"> </span>
+          <!-- <span class=" navbar-toggler-bar bar2"> </span>
+          <span class=" navbar-toggler-bar bar3"> </span> -->
         </button>
       </div>
-      <a class=" navbar-brand" href="javascript:void(0)"> {{ getTitle() }} </a>
+      <a class=" navbar-brand" href="javascript:void(0)"> FinTech Dev Ops </a>
     </div>
 
     <div class=" navbar-collapse" [ngbCollapse]="isCollapsed" id="navigation">
@@ -25,12 +25,12 @@
               <img alt="Profile Photo" src="assets/img/anime3.png" />
             </div>
             <b class=" caret d-none d-lg-block d-xl-block"> </b>
-            <p class=" d-lg-none">Log out</p>
+            <!-- <p class=" d-lg-none">Log out</p> -->
           </a>
           <ul class=" dropdown-navbar" ngbDropdownMenu>
             <li class=" nav-link">
               <a class=" nav-item" href="javascript:void(0)" ngbDropdownItem>
-                Profile
+                {{fullName}}
               </a>
             </li>
             <li class=" nav-link">
@@ -52,24 +52,4 @@
   </div>
 </nav>
 
-<ng-template #content let-modal>
-  <div class=" modal-header">
-    <input
-      class=" form-control"
-      id="inlineFormInputGroup"
-      placeholder="SEARCH"
-      type="text"
-    />
 
-    <button
-      aria-label="Close"
-      class=" close"
-      data-dismiss="modal"
-      type="button"
-      (click)="modal.dismiss('Cross click')"
-    >
-      <i class=" tim-icons icon-simple-remove"> </i>
-    </button>
-  </div>
-
-</ng-template>

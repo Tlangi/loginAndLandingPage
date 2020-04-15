@@ -10,7 +10,11 @@ import {Observable, of, throwError} from 'rxjs';
 import {delay, dematerialize, materialize, mergeMap} from 'rxjs/operators';
 import {ok} from 'assert';
 
-const users = [{ id: 1, firstName: 'Tlangelani', lastName: 'Maswanganye', username: 'test', password: 'test' }]
+const users = [
+  { id: 1, firstName: 'Admin', lastName: 'Maswanganye', roll: 'adimn', username: 'test', password: 'test' },
+  { id: 2, firstName: 'User', lastName: 'Maswanganye', roll: 'user', username: 'text', password: 'text' },
+  { id: 3, firstName: 'NonUser', lastName: 'Maswanganye', roll: 'nonUser', username: 'tall', password: 'tall' }
+  ];
 
 export class FakeBackendInterceptor implements HttpInterceptor {
 
@@ -46,6 +50,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         username: user.username,
         firstName: user.firstName,
         lastName: user.lastName,
+        roll: user.roll,
         token: 'fake-jwt-token'
       })
     }

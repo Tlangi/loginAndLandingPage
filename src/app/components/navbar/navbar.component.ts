@@ -11,7 +11,6 @@ import {AuthenticationService} from '../../authentication/services/authenticatio
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-
   private listTitles: any[];
   location: Location;
   // tslint:disable-next-line:variable-name
@@ -20,20 +19,11 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private sidebarVisible: boolean;
 
   currentUser: any;
+  fullName: string;
 
   public isCollapsed = true;
 
   closeResult: string;
-
-  private static getDismissReason (reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
-    }
-  }
 
   constructor(
     location: Location,
@@ -44,8 +34,16 @@ export class NavbarComponent implements OnInit, OnDestroy {
   ) {
     this.location = location;
     this.sidebarVisible = false;
+
     this.authenticationService.currentUser.subscribe(
       x => this.currentUser = x);
+
+    if (this.currentUser) {
+      this.fullName = authenticationService.currentUserValue.firstName + ' ' +
+        authenticationService.currentUserValue.lastName;
+    } else {
+      this.fullName = 'Profile';
+    }
   }
 
   logout() {
@@ -188,26 +186,36 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   getTitle() {
     let titlee = this.location.prepareExternalUrl(this.location.path());
-    if (titlee.charAt(0) === '#') {
+    if (titlee.charAt(0) === 'home') {
       titlee = titlee.slice(1);
     }
 
-    // tslint:disable-next-line:prefer-for-of
     for (let item = 0; item < this.listTitles.length; item++) {
       if (this.listTitles[item].path === titlee) {
         return this.listTitles[item].title;
       }
     }
-    return 'Dashboard';
+    return '';
   }
 
   open(content) {
     this.modalService.open(content, {windowClass: 'modal-search'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
-      this.closeResult = `Dismissed ${NavbarComponent.getDismissReason(reason)}`;
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
+
   ngOnDestroy(){
      window.removeEventListener('resize', this.updateColor);
   }

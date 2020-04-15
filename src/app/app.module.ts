@@ -17,7 +17,6 @@ import {fakeBackendProvider} from './authentication/services/fake-backend-interc
 import {FlexModule} from '@angular/flex-layout';
 import {ErrorInterceptorService} from './authentication/services/error-interceptor.service';
 import {JwtInterceptorService} from './authentication/services/jwt-interceptor.service';
-import {AuthenticationGuardService} from './authentication/services/authentication-guard.service';
 
 @NgModule({
   imports: [
@@ -34,7 +33,6 @@ import {AuthenticationGuardService} from './authentication/services/authenticati
   ],
   declarations: [AppComponent, AdminLayoutComponent, LoginComponent],
   providers: [
-    AuthenticationGuardService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true },
     fakeBackendProvider ],
