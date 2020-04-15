@@ -1,79 +1,51 @@
 
 <div class=" content">
   <div class=" row">
-    <div class=" col-md-8">
-      <div class=" card">
+    <div class=" col-12">
+      <div class=" card card-chart">
 
-        <div class=" card-header">
-          <ul class="nav nav-tabs nav-fil" id="myTab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="users-tab" data-toggle="tab" href="#users"
-                 role="tab" aria-controls="users" aria-selected="true">
-                Users
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="applications-tab" data-toggle="tab" href="#applications"
-                 role="tab" aria-controls="applications" aria-selected="false">
-                Applications
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="workType-tab" data-toggle="tab" href="#workType"
-                 role="tab" aria-controls="workType" aria-selected="false">
-                Work Type
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="status-tab" data-toggle="tab" href="#status"
-                 role="tab" aria-controls="status" aria-selected="false">
-                Status
-              </a>
-            </li>
-          </ul>
-        </div>
+        <mat-tab-group>
 
-        <div class="card-body">
+          <mat-tab label="Users">
+            <table class=" table tablesorter" id="">
+              <thead class=" text-primary">
+              <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Due Date</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td> Tlangelani Maswnganye </td>
+                <td> Youth Development  </td>
+                <td> Active </td>
+                <td> 15 April 2020 </td>
+              </tr>
 
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="users-tab">
-              <div class=" table-responsive">
-                <table class=" table tablesorter" id="">
-                  <thead class=" text-primary">
-                  <tr>
-                    <th>Name</th>
-                    <th>Role</th>
-                    <th>Status</th>
-                    <th>Due Date</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td> Tlangelani Maswnganye </td>
-                    <td> Youth Development  </td>
-                    <td> Active </td>
-                    <td> 15 April 2020 </td>
-                  </tr>
+              </tbody>
+            </table>
+          </mat-tab>
 
-                  </tbody>
-                </table>
-              </div>
+          <mat-tab label="Applications">
+            Applications
+          </mat-tab>
 
-            </div>
-            <div class="tab-pane fade" id="applications" role="tabpanel" aria-labelledby="applications-tab">
-              Applications
-            </div>
-            <div class="tab-pane fade" id="workType" role="tabpanel" aria-labelledby="workType-tab">
-              Work Type
-            </div>
-            <div class="tab-pane fade" id="status" role="tabpanel" aria-labelledby="status-tab">
-              Status
-            </div>
-          </div>
+          <mat-tab label="Work Type">
+            Work Type
+          </mat-tab>
 
-        </div>
+          <mat-tab label="Status">
+            Status
+          </mat-tab>
+
+        </mat-tab-group>
 
       </div>
     </div>
   </div>
 </div>
+
+
+

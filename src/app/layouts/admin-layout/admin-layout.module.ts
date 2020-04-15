@@ -18,6 +18,7 @@ import {TeamsComponent} from '../../pages/teams/teams/teams.component';
 import {ProjectsComponent} from '../../pages/projects/projects/projects.component';
 import {ArchitectureComponent} from '../../pages/architecture/architecture/architecture.component';
 import {InfrastructureComponent} from '../../pages/infrastructure/infrastructure/infrastructure.component';
+import {MatTabsModule} from "@angular/material/tabs";
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import {InfrastructureComponent} from '../../pages/infrastructure/infrastructure
     FormsModule,
     HttpClientModule,
     NgbModule,
+    MatTabsModule,
   ],
   declarations: [
     DashboardComponent,
